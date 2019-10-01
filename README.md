@@ -3,7 +3,8 @@
 ## Part One: Firebase
 - [x] display trees
 - [x] ability to add tree
-- [ ] add user signup
+- [x] add user signup
+- [ ] add validation
 - [ ] add user login
 - [ ] image handling
 - [ ] edit image
@@ -12,7 +13,6 @@
 - [ ] display individual tree
 - [ ] filter on trees
 - [ ] add ability to comment
-- [ ] add validation
 - [ ] add error handling
 
 
