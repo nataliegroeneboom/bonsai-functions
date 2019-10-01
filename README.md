@@ -4,8 +4,9 @@
 - [x] display trees
 - [x] ability to add tree
 - [x] add user signup
-- [ ] add validation
-- [ ] add user login
+- [x] add validation
+- [x] add user login
+- [ ] add authentication middleware
 - [ ] image handling
 - [ ] edit image
 - [ ] edit content
@@ -16,6 +17,6 @@
 - [ ] add error handling
 
 
-## Part Two: React JS
+
 
 
