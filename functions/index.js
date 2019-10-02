@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const app = require('express')();
 const {getAllBonsais, postOneBonsai} = require('./handlers/bonsais');
-const {signUp, login} = require('./handlers/users');
+const {signUp, login, uploadImage} = require('./handlers/users');
 const FBAuth = require('./util/fbAuth');
 
 //==================================================================================================================================
@@ -9,6 +9,7 @@ const FBAuth = require('./util/fbAuth');
 //==================================================================================================================================
 app.get('/bonsais', getAllBonsais)
 app.post('/bonsai', FBAuth, postOneBonsai);
+ app.post('/bonsai/:bonsaiSlug/image', FBAuth, uploadImage);
 
 //==================================================================================================================================
 //=========================================================USER ROUTES==============================================================
