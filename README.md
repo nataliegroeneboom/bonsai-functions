@@ -6,7 +6,7 @@
 - [x] add user signup
 - [x] add validation
 - [x] add user login
-- [ ] add authentication middleware
+- [x] add authentication middleware
 - [ ] image handling
 - [ ] edit image
 - [ ] edit content
