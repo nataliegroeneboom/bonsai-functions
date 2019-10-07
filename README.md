@@ -10,7 +10,7 @@
 - [x] image handling
 - [x] display topics
 - [x] add topic
-- [ ] getting and posting comments
+- [ ] retrieving and commenting on a topic
 - [ ] edit image
 - [ ] edit content
 - [ ] delete content
