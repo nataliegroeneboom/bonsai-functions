@@ -7,7 +7,9 @@
 - [x] add validation
 - [x] add user login
 - [x] add authentication middleware
-- [ ] image handling
+- [x] image handling
+- [ ] display topics
+- [ ] add topic
 - [ ] edit image
 - [ ] edit content
 - [ ] delete content

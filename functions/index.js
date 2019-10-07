@@ -1,7 +1,8 @@
 const functions = require('firebase-functions');
 const app = require('express')();
-const {getAllBonsais, postOneBonsai} = require('./handlers/bonsais');
-const {signUp, login, uploadImage} = require('./handlers/users');
+const {getAllBonsais, postOneBonsai, uploadImage} = require('./handlers/bonsais');
+const {getAllTopics, postOneTopic} = require('./handlers/topics');
+const {signUp, login} = require('./handlers/users');
 const FBAuth = require('./util/fbAuth');
 
 //==================================================================================================================================
@@ -12,10 +13,18 @@ app.post('/bonsai', FBAuth, postOneBonsai);
  app.post('/bonsai/:bonsaiSlug/image', FBAuth, uploadImage);
 
 //==================================================================================================================================
+//=========================================================TOPICS ROUTES============================================================
+//==================================================================================================================================
+
+app.get('/forum', getAllTopics)
+app.post('/forum/post', postOneTopic)
+
+//==================================================================================================================================
 //=========================================================USER ROUTES==============================================================
 //==================================================================================================================================
 
 app.post('/signup', signUp);
-app.post('/login', login)
+app.post('/login', login);
+
 
 exports.api = functions.region('europe-west1').https.onRequest(app);

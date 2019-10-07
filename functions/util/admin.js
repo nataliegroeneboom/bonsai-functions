@@ -3,7 +3,8 @@ const admin = require('firebase-admin');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://bonsai-7041d.firebaseio.com"
+    databaseURL: "https://bonsai-7041d.firebaseio.com",
+    storageBucket: "bonsai-7041d.appspot.com"
   });
 
   const db = admin.firestore();
