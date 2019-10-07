@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 const app = require('express')();
 const {getAllBonsais, postOneBonsai, uploadImage} = require('./handlers/bonsais');
 const {getAllTopics, postOneTopic} = require('./handlers/topics');
-const {signUp, login} = require('./handlers/users');
+const {signUp, login, addUserDetails} = require('./handlers/users');
 const FBAuth = require('./util/fbAuth');
 
 //==================================================================================================================================
@@ -25,6 +25,8 @@ app.post('/forum/post', FBAuth, postOneTopic)
 
 app.post('/signup', signUp);
 app.post('/login', login);
+app.post('/user/image', FBAuth, uploadImage);
+app.post('/user', FBAuth, addUserDetails);
 
 
 exports.api = functions.region('europe-west1').https.onRequest(app);

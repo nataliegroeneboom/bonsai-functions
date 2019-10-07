@@ -58,6 +58,7 @@ exports.postOneBonsai = (req, res) => {
     const fs = require('fs');
     let imageFileName;
     let imageUpload = {};
+    
 
     const busboy = new Busboy({headers: req.headers});
     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
@@ -80,7 +81,12 @@ exports.postOneBonsai = (req, res) => {
         })
         .then(() => {
         const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFileName}?alt=media`;
-        return db.doc(`/bonsais/${req.params.bonsaiSlug}`).update({ imageUrl });
+        if(req.params.bonsaiSlug){
+            return db.doc(`/bonsais/${req.params.bonsaiSlug}`).update({ imageUrl });
+        }else{
+            return db.doc(`/users/${req.user.handle}`).update({ imageUrl });
+        }
+        
        
         })
         .then(() => {

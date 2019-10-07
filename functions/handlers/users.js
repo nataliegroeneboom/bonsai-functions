@@ -1,10 +1,15 @@
-const {db} = require('../util/admin');
+const {db, admin} = require('../util/admin');
 const config = require('../util/config');
-const {validateSignup, validateLogin} = require('../util/validators');
+const {validateSignup, validateLogin, reduceUserDetails} = require('../util/validators');
 
 const firebaseLib = require('firebase');
 firebaseLib.initializeApp(config);
- 
+
+
+//==================================================================================================================================
+//======================================================== SIGN UP =================================================================
+//==================================================================================================================================
+
 exports.signUp = (req, res) => {
     const newUser = {
         email: req.body.email,
@@ -15,7 +20,8 @@ exports.signUp = (req, res) => {
     }
 
    const {valid, errors} =  validateSignup(newUser);
-   if(!valid) return res.status(400).json(errors)
+   const noImg = 'blank_profile.png';
+   if(!valid) return res.status(400).json(errors);
 
     let token, userId; 
     db.doc(`/users/${newUser.handle}`)
@@ -41,6 +47,7 @@ exports.signUp = (req, res) => {
                 email: newUser.email,
                 createdAt: new Date().toISOString(),
                 admin: newUser.admin,
+                imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImg}?alt=media`,
                 userId
             };
            return db.doc(`/users/${newUser.handle}`).set(userCredentials)
@@ -64,6 +71,10 @@ exports.signUp = (req, res) => {
               
         });
 }
+
+//==================================================================================================================================
+//======================================================== LOGIN ===================================================================
+//==================================================================================================================================
 
 exports.login = (req, res) => {
     const user = {
@@ -89,4 +100,20 @@ exports.login = (req, res) => {
             
             
         })
+}
+
+//==================================================================================================================================
+//======================================================== ADD USER DETAILS ========================================================
+//==================================================================================================================================
+
+exports.addUserDetails = (req, res) => {
+    let userDetails = reduceUserDetails(req.body);
+    db.doc(`/users/${req.user.handle}`).update(userDetails)
+        .then(() => {
+            return res.json({message: 'Details added successfully'})
+        })
+        .catch(err => {
+            console.error(err);
+            return res.status(500).json({error: err.code})
+        });
 }
