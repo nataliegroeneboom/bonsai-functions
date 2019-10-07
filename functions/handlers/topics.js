@@ -22,7 +22,7 @@ exports.postOneTopic = (req, res) => {
         subject: req.body.subject,
         category: req.body.category,
         message: req.body.message,
-        userHandle: req.body.userHandle,
+        userHandle: req.user.handle,
         createdAt: new Date()
     }
 

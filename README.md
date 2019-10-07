@@ -8,8 +8,9 @@
 - [x] add user login
 - [x] add authentication middleware
 - [x] image handling
-- [ ] display topics
-- [ ] add topic
+- [x] display topics
+- [x] add topic
+- [ ] getting and posting comments
 - [ ] edit image
 - [ ] edit content
 - [ ] delete content
